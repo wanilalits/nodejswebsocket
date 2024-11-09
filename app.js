@@ -1,13 +1,12 @@
-import { WebSocketServer } from 'ws';
+console.log('..')
+var http = require('http')
+var data =[
+    {name :'Lalit'}
+]
 
-const wss = new WebSocketServer({ port: 8080 });
+http.createServer(function(req,res){
+    res.writeHead(200,{'Contant-Type':'application\json'})
+    res.write(JSON.stringify(data))
+    res.end()
 
-wss.on('connection', function connection(ws) {
- 
-    ws.on('message', function message(data) {
-    console.log('received: %s', data);
-  //  ws.send('Lalit');
-  });
-
-  ws.send('Lalit1');
-});
+}).listen(3001)
