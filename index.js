@@ -1,24 +1,30 @@
-const express = require('express')
-const webserver = express()
- .use((req, res) =>
-   res.sendFile('/websocket-client.html', { root: __dirname })
- )
+const express = require('express');
+const app = express();
 
- .listen(3000, () => console.log(`Listening on ${3000}`))
- 
-const { WebSocketServer } = require('ws')
-const sockserver = new WebSocketServer({ port: 443 })
-sockserver.on('connection', ws => {
- console.log('New client connected!')
- ws.send('connection established')
- ws.on('close', () => console.log('Client has disconnected!'))
- ws.on('message', data => {
-   sockserver.clients.forEach(client => {
-     console.log(`distributing message: ${data}`)
-     client.send(`${data}`)
-   })
- })
- ws.onerror = function () {
-   console.log('websocket error')
- }
-})
+const WebSocket = require('ws');
+const wss = new WebSocket.Server({ port: 8080 }); // Initialize WebSocket server
+
+// WebSocket event handling
+wss.on('connection', (ws) => {
+  console.log('A new client connected.');
+
+  // Event listener for incoming messages
+  ws.on('message', (message) => {console.log('Received message:', message.toString());
+
+    // Broadcast the message to all connected clients
+  wss.clients.forEach((client) => {
+      if (client.readyState === WebSocket.OPEN) {
+        client.send(message.toString());
+     
+      }
+    });
+  });
+
+  // Event listener for client disconnection
+  ws.on('close', () => { console.log('A client disconnected.'); });});
+
+// Start the server
+const port = 3000;
+app.listen(port, () => {
+  console.log(`Server started on http://localhost:${port}`);
+});
