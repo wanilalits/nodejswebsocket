@@ -2,7 +2,7 @@
   "name": "new-folder",
   "version": "1.0.0",
   "main": "app.js",
-"type": "module",
+
 
   "dependencies": {
     "type": "module",
