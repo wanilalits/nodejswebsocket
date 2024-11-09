@@ -1,8 +1,13 @@
-const express = require('express')
-const app = express()
+import { WebSocketServer } from 'ws';
 
-app.get('/', function (req, res) {
-  res.send('Hello World..fff.')
-})
+const wss = new WebSocketServer({ port: 3001 });
 
-app.listen(3000)
+wss.on('connection', function connection(ws) {
+ 
+    ws.on('message', function message(data) {
+    console.log('received: %s', data);
+  //  ws.send('Lalit');
+  });
+
+  ws.send('Lalit1');
+});
