@@ -18,7 +18,6 @@ wss.on('connection', (ws) => {
       }
     });
   });
-
   // Event listener for client disconnection
   ws.on('close', () => { console.log('A client disconnected.'); });});
 
