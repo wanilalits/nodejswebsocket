@@ -1,6 +1,7 @@
-//import { WebSocketServer } from 'ws';
-
-//const wss = new WebSocketServer({ port: 8080 });
+const express = require('express')
+const app = express()
+const WebSocket = require('ws');
+const wss = new WebSocket.Server({ port: 8080 }); // Initialize WebSocket server
 
 //wss.on('connection', function connection(ws) {
  
@@ -13,11 +14,10 @@
 //});
 
 
-const express = require('express')
-const app = express()
+
 
 app.get('/', function (req, res) {
-  res.send('Hello World..ok...')
+  res.send('Hello World..ok.')
 })
 
 app.listen(3000)
