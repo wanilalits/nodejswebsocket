@@ -4,7 +4,7 @@ const app = express()
 //app.use(cors());
 const WebSocket = require('ws');
 const wss = new WebSocket.Server({ port: 8080 }); // Initialize WebSocket server
-var responce ='http  new'
+var responce ='http  new-'
 wss.on('connection', function connection(ws) {
  responce='ws'
  
@@ -22,7 +22,7 @@ wss.on('connection', function connection(ws) {
 
 
 app.get('/', function (req, res) {
-   //responce='http'
+   //responce='http new'
   res.send(responce)
   console.log(responce);
 })
