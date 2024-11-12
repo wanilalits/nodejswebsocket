@@ -38,7 +38,14 @@ wss.on('connection', function connection(ws) {
     
 
 
-  
+ app.get('/', function (req, res) {
+  //responce='http new'
+ res.send("WELCOME")
+ 
+})
+
+app.listen(3000)
+
 
 
 
