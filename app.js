@@ -4,11 +4,11 @@ const app = express();
 const cors =require ('cors')
 app.use(cors());
 
-const httpServer = app.listen(process.env.PORT)
+const httpServer = app.listen( process.env.PORT  )
 
 
 const ws = require('ws');
-const wss = new ws.Server({ noServer: true  }); // Initialize WebSocket server noServer: true  port: 3001
+const wss = new ws.Server({  port: 3000, noServer1: true }); // Initialize WebSocket server noServer: true  port: 3001
 
 
 
@@ -44,7 +44,7 @@ wss.on('connection', function connection(ws) {
  
 })
 
-//app.listen(3000)
+app.listen(process.env.PORT)
 
 
 
