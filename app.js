@@ -45,6 +45,6 @@ wss.on('connection', function connection(ws, req) {
 
 
  app.get('/', function (req, res) {
- res.send("WELCOME")
+ res.send("WELCOME--")
 })
 app.listen(process.env.PORT)
