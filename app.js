@@ -1,10 +1,30 @@
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
+const http =require('http');
 const cors =require ('cors')
+const {Server} =require('socket.io')
 app.use(cors());
 const WebSocket = require('ws');
-const wss = new WebSocket.Server({ port: 8080 }); // Initialize WebSocket server
-var responce ='http  new'
+const wss = new WebSocket.Server({ port: 3001 }); // Initialize WebSocket server
+const ws = require('ws')
+
+
+const httpServer = app.listen(process.env.PORT)
+console.log(httpServer)
+const wsServer = new ws.Server({ noServer: true })
+
+httpServer.on('upgrade', (req, socket, head) => {
+  wsServer.handleUpgrade(req, socket, head, (ws) => {
+    wsServer.emit('connection', ws, req)
+  })
+})
+
+
+
+
+
+
+var responce ='http'
 wss.on('connection', function connection(ws) {
  responce='ws'
  
@@ -27,4 +47,4 @@ app.get('/', function (req, res) {
   console.log(responce);
 })
 
-app.listen(3000)
+//app.listen(3000)
