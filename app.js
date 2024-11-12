@@ -4,7 +4,7 @@ const cors =require ('cors')
 app.use(cors());
 const WebSocket = require('ws');
 const wss = new WebSocket.Server({ port: 8080 }); // Initialize WebSocket server
-var responce ='http'
+var responce ='http  new'
 wss.on('connection', function connection(ws) {
  responce='ws'
  
