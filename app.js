@@ -8,7 +8,7 @@ const httpServer = app.listen(process.env.PORT)
 
 
 const ws = require('ws');
-const wss = new ws.Server({  port: 3001 }); // Initialize WebSocket server noServer: true 
+const wss = new ws.Server({ noServer: true  }); // Initialize WebSocket server noServer: true  port: 3001
 
 
 
