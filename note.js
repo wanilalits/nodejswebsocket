@@ -5,10 +5,10 @@ const app = express();
 const cors =require ('cors')
 app.use(cors());
 
-const httpServer = app.listen(3000 )
+const httpServer = app.listen( process.env.PORT  )
 
 const ws = require('ws');
-const wss = new ws.Server({ port: 3001 });  // Initialize WebSocket server noServer: true  port: 3001
+const wss = new ws.Server({ noServer: true });  // Initialize WebSocket server noServer: true  port: 3001
 
 CLIENTS=[];
 
@@ -24,8 +24,8 @@ httpServer.on('upgrade', (req, socket, head) => {
 wss.on('connection', function connection(ws, req) {
   CLIENTS.push(ws);
      ws.on('message', function message(data) {
-      sendAll(data);
-     // ws.send(data);
+     // sendAll(data);
+      ws.send(data);
    });
   
  });
@@ -42,4 +42,4 @@ wss.on('connection', function connection(ws, req) {
  app.get('/', function (req, res) {
     res.send("WELCOME--")
    })
-   app.listen(3000)
+   app.listen(process.env.PORT)
