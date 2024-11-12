@@ -2,22 +2,27 @@ const express = require('express')
 const app = express()
 const WebSocket = require('ws');
 const wss = new WebSocket.Server({ port: 8080 }); // Initialize WebSocket server
-
+var responce ='http'
 wss.on('connection', function connection(ws) {
+ responce='ws'
  
     ws.on('message', function message(data) {
     console.log('received: %s', data);
-  ws.send('Lalit');
+ 
+  console.log(responce);
+  ws.send(responce);
   });
-
-  ws.send('Lalit1');
+ 
+  ws.send(responce);
 });
 
 
 
 
 app.get('/', function (req, res) {
-  res.send('Hello World..ok--')
+   //responce='http'
+  res.send(responce)
+  console.log(responce);
 })
 
 app.listen(3000)
